@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\02 destructuring\\03_string_destructuring.js"
+            "program": "${workspaceFolder}\\02 destructuring\\04_number&boolean_destructuring.js"
         }
     ]
 }
