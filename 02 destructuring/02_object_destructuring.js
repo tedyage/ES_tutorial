@@ -120,6 +120,4 @@
         console.log("second is "+second);
         console.log("third is "+third);
     }
-
-   
 }
