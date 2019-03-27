@@ -9,7 +9,7 @@
         gender:'man'
     };
 
-    //传统的javascript，输出模板通常方式：
+    //传统的javascript，拼接字符串通常方式：
     let str1 = 'My name is '+person.name+
     ', and I\'m '+person.age+
     ', and I\'m a '+person.gender+".";
@@ -17,7 +17,7 @@
     //这种写法很不方便
 
     //ES6引入了模板字符串解决了这个问题。
-    //模板字符串是曾庆版的字符串，用反引号（`）标识。
+    //模板字符串是增强版的字符串，用反引号（`）标识。
     //它可以用来定义多行字符串，同时在字符串中嵌入变量，变量名需要嵌入到${}之中。
     //${}内部可以放入标识符/表达式/甚至函数，如果${}内部变量没有声明，会报错
     //它会保留所有的空格和缩进。
@@ -47,4 +47,22 @@
     let str6 = '(name)=>`Hello ${name}!`';
     let fn1 = eval.call(null,str6);
     console.log(fn1('tianzhiqiang'));    
+
+    //模板字符串甚至还能嵌套
+    let tmpl = addrs => `
+    <table>
+    ${addrs.map(addr => `
+        <tr><td>${addr.first}</td></tr>
+        <tr><td>${addr.last}</td></tr>
+    `).join('')}
+    </table>
+    `;
+
+    let data = [
+        {first:'Jane',last:'Bond'},
+        {first:'Lars',last:'Croft'}
+    ]
+
+    console.log(tmpl(data));
+    //addrs是一个数组类型的形参，调用遍历方法，内部嵌套输出模板字符串
 }
