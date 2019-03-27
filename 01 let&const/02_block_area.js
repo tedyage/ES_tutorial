@@ -7,7 +7,7 @@ ES5只有全局作用域和函数作用域，这回带来很多不合理的场�
 var temp = new Date();
 
 function f(){
-    console.log(temp);                   //undefined
+    console.log(temp);                   //undefined，因为内层作用域也声明了temp变量，这就是变量提升
     if(false){
         var temp = "hello word";
     }
