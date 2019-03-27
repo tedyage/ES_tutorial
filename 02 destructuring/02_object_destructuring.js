@@ -7,7 +7,7 @@
     console.log('foo is '+foo);
     console.log('bar is '+bar);
     //对象的解构和数组的不同之处。数组的赋值是按数组内元素次序排列赋值的，
-    //对象的赋值是按照属性名相同的关系，赋值的。
+    //对象的赋值是按照属性名相同的模式，赋值的。
     let{x,y} = {y:1,x:2};           //x=2,y=1
     console.log("x is "+x);
     console.log("y is "+y);
