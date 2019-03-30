@@ -30,9 +30,9 @@ console.log(regex.flags);
     let str2 = "abc";
     let str3 = "aBc";
 
-    console.log("str1.match(regex1) is "+str1.match(regex1));
-    console.log("str2.match(regex1) is "+str2.match(regex1));
-    console.log("str3.match(regex1) is "+str3.match(regex1));
+    console.log("str1.match(regex1) is "+str1.match(regex1));    //ABC  i修饰符意味着正则校验忽略大小写
+    console.log("str2.match(regex1) is "+str2.match(regex1));    //abc
+    console.log("str3.match(regex1) is "+str3.match(regex1));    //aBc
 }
 
 //g:全局匹配；
@@ -43,8 +43,8 @@ console.log(regex.flags);
     let regex2 = /abc/g;
 
     let str1 = "abc&abc&abcd";
-    console.log("str1.match(regex1) is "+str1.match(regex1));
-    console.log("str1.match(regex2) is "+str1.match(regex2));
+    console.log("str1.match(regex1) is "+str1.match(regex1));    //abc  只输出字符串中的第一个匹配正则的子字符串
+    console.log("str1.match(regex2) is "+str1.match(regex2));    //['abc','abc','abc']  输出字符串中全部的匹配正则的子字符串
 }
 
 //m:多行匹配
@@ -60,11 +60,11 @@ console.log(regex.flags);
 
     let str1 = "tabcd\nabcd";
 
-    console.log(str1.match(regex1));
-    console.log(str1.match(regex2));
-    console.log(str1.match(regex3));
-    console.log(str1.match(regex4));
-    console.log(str1.match(regex5));
+    console.log(str1.match(regex1));    //ab   以换行符之后的第一个字符为头，输出匹配/^ab/的第一个字符串
+    console.log(str1.match(regex2));    //ab   以换行符之后的第一个字符为头，在每行中匹配全部的/^ab/的字符串
+    console.log(str1.match(regex3));    //['ab','ab']   以换行赋值后的第一个字符为头，在每行出匹配全部的/ab/的字符串
+    console.log(str1.match(regex4));    //['cd']
+    console.log(str1.match(regex5));    //['cd','cd']
 }
 
 
