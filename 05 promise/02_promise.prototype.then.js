@@ -7,8 +7,8 @@ Promise实例具有then方法，它的作用是为Promise实例添加状态改�
     //then方法返回的是一个新的Promise实例。因此可以采用链式写法，即then方法后面再调用另一个then方法
     getJSON('/posts.json')
     .then(function(data){
-        return data.post;        //第一个then方法里的回调函数完成之后，返回结果data.post                                
-    }).then(function(post){      //会作为第二个then方法的回调函数的参数
+        return data.post;        //第一个then方法返回的是一个Promise实例，故可以直接调用then方法，                             
+    }).then(function(post){      //第一个then方法回调函数里返回的值，会作为第二个then方法的回调函数的参数
         //...
     });
 }
@@ -23,5 +23,12 @@ Promise实例具有then方法，它的作用是为Promise实例添加状态改�
         console.log("resolved: "+comments);  
     },function funB(err){                      //另一个Promise对象的rejected状态执行funcB函数
         console.error("rejected: "+err );
-    })
+    });
+
+    //采用箭头函数，上面的代码可以简写
+    getJSON('/post/2.json')
+    .then(data=>getJSON(data.url))
+    .then(comments=>console.log("resolved: "+comments))
+    .catch(err=>console.error("rejected: "+err));
+
 }
