@@ -27,3 +27,27 @@ Promise.all()
     .catch(error=>console.error(error));
     
 }
+
+{
+    const promises = [2,3,5,7,11,13].map(id=>{
+        var p = new Promise((resolve,reject)=>{
+            if(id<15){
+                resolve(id*2);
+            }else{
+                reject(id);
+            }
+        });
+        return p;
+    });
+
+    const p = Promise.all(promises)
+    .then(data=>console.log(data))     //当6个Promise对象的状态都变成fulfilled，才执行then方法，输出的是6个调用resolve函数时传入的参数的数组
+    .catch(error=>console.error(error));     //当6个Promise对象中，发现了第一个状态变成reject的对象时，执行catch方法，输出的是那个reject方法的参数
+}
+
+{
+    //如果作为Promise.all()的参数的其中的Promise实例，自己定义了catch方法，
+    //那么一旦这个实例被reject，也不会触发Promise.all()的catch方法
+    //原因是catch方法返回的也是一个新的Promise实例，而这个新的实例的状态为resolved
+    
+}
