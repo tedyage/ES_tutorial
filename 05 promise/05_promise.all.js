@@ -49,5 +49,21 @@ Promise.all()
     //如果作为Promise.all()的参数的其中的Promise实例，自己定义了catch方法，
     //那么一旦这个实例被reject，也不会触发Promise.all()的catch方法
     //原因是catch方法返回的也是一个新的Promise实例，而这个新的实例的状态为resolved
-    
+
+    //p1的状态为resolved
+    const p1 = new Promise((resolve,reject)=>{
+        resolve('hello');
+    }).then(data=>data);
+
+    //p2虽然抛出一个Error，但是其执行catch方法，接受了Error对象，并返回了新的Promise对象
+    //p2此时指向这个新的Promise对象，而此对象的状态为resolveD
+    const p2 = new Promise((resolve,reject)=>{
+        reject(new Error('出错了.'));
+    }).then(data=>console.log(data))
+    .catch(error=>error.message);
+
+    //由于p1,p2的最终状态都是resolved，所以Promise.all([p1,p2])的最终状态是resolved
+    Promise.all([p1,p2])
+    .then(data=>console.log(data))
+    .catch(error=>console.error(error));
 }
