@@ -91,7 +91,7 @@ ES6允许按照一定模式，从数组和对象提取值，对变量进行赋�
             console.log('aaa')
         };
         let [x = f()] = [1];
-        console.log(x);
+        console.log(x);          //1
         let [y = f()] = [];
         console.log(y);
     }
@@ -102,7 +102,7 @@ ES6允许按照一定模式，从数组和对象提取值，对变量进行赋�
         console.log("x is "+x);
         console.log("y is "+y);
 
-        let [a=1,b=a] = [2];         //x=2,y=2
+        let [a=1,b=a] = [2];         //a=2,b=2
         console.log("a is "+a);
         console.log("b is "+b);
 
