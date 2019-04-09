@@ -15,7 +15,7 @@ ES6引入了一个Symbol数据类型，表示独一无二的值
 
 {
     //Symbol函数可以接受一个字符串作为参数，
-    //该字符串只能表示对这个Symbol值的表示描述信息，方便与其它Symbol值区分
+    //该字符串只能表示对这个Symbol值的描述信息，方便与其它Symbol值区分
 
     let s1 = Symbol('This is the first Symbol');
     let s2 = Symbol("This is the second Symbol");
@@ -39,11 +39,11 @@ ES6引入了一个Symbol数据类型，表示独一无二的值
     let s1 = Symbol();
     let s2 = Symbol();
 
-    console.log('s1 === s2 is '+(s1===s2));
+    console.log('s1 === s2 is '+(s1===s2));        //false
 
     let s3 = Symbol('abc');
     let s4 = Symbol('abc');
-    console.log('s3 === s4 is '+(s3===s4));
+    console.log('s3 === s4 is '+(s3===s4));        //false
 }
 
 {
