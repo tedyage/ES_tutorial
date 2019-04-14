@@ -26,7 +26,8 @@ Symbol.for()方法接受一个字符串的参数，生成的Symbol值是相同�
     //Symbol.keyFor方法，返回一个已登记的Symbol值的key
     let s1 = Symbol.for("foo");
     console.log(`Symbol.keyFor(s1) is ${Symbol.keyFor(s1)}`);  //foo
-    
+    //由于s1是已登记的Symbol值，所以调用Symbol.keyFor()方法，可以整成返回key
     let s2 = Symbol.for('foo');
     console.log(`Symbol.kerFor(s2) is ${Symbol.keyFor(s2)}`);  //undefined
+    //由于s2是没有登记过的Symbol值，所以调用Symbol.keyFor()方法，返回的是undefined
 }
