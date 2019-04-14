@@ -24,7 +24,7 @@ Symbol值作为属性名，是不会在for(var...in...)中出现的，
     console.log(Reflect.ownKeys(obj)) ;            //["key3", Symbol(a), Symbol(b)]
 
     //Symbols值标识的属性名，虽然不会被常规方法遍历得到，但是它是非私有属性。
-    //利用这一点，我们可以为对象队医一些非私有的，但又只用于内部的方法。
+    //利用这一点，我们可以为对象定义一些非私有的，但又只用于内部的方法。
     {
         let size = Symbol('size');
 
