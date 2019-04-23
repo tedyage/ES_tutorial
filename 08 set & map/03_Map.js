@@ -80,7 +80,154 @@ Map键值对的结构：值————值
 
     for(let [key,value] of map.entries()){
         console.log(key,value);   //name tianzhiqiang, age 30
+    }    
+}
+
+{
+    //Map结构转换为数组结构，
+    const map = new Map([
+        [1,"hello"],
+        [2,"world"]
+    ]);
+    //比较快速的方法是扩展运算符
+    let arr1 = [...map.keys()],
+        arr2 = [...map.values()],
+        arr3 = [...map.entries()],
+        arr4 = [...map];
+    console.log(arr1);   //[1,2]
+    console.log(arr2);   //[hello,world]
+    console.log(arr3);   //[[1,hello],[2,world]]
+    console.log(arr4);   //[[1,hello],[2,world]]
+
+    //Map结构通过转化为数组之后，
+    //可以借助数组的filter()方法，实现Map的过滤。
+    let map1 = new Map([
+        [1,'a'],
+        [2,'b'],
+        [3,'c']
+    ]);
+
+    map1 = new Map([...map1].filter(([k,v])=>k<3));
+    console.log(map1);       //{1=>'a',2=>'b'}
+
+    //也可以借助map()方法，实现Map的遍历
+    map1 = new Map([...map1].map(([k,v])=>[k*2,'_'+v]));
+    console.log(map1);      //{2=>'_a',4=>'_b'}
+}
+
+{
+    //Map与其它数据结构的互相转换
+    {
+        //Map转换Array
+        let map = new Map();
+        map.set(true,7).set({foo:3},['abc']);
+        console.log(map)     //{true=>7,{foo:3}=>['abc']}
+        console.log([...map]);     //[[true,7],[{foo:3},['abc]]]
+    }
+    
+    {
+        //Array转换Map
+        let map = new Map([
+            [true,7],
+            [{foo:3},['abc']]
+        ]);
+        console.log(map);    
+        //{true=>7,{foo:3}=>['abc']}
     }
 
-    
+    {
+        //Map转换为对象
+        //如果Map所有的键都是字符串类型，则它可以无损的转为对象。
+        //运用map的entries()循环体，遍历map，将key和value加入到obj中。
+        let MapToObj = (map)=>{
+            let obj = {};
+            for(let [k,v] of map.entries()){
+                obj[k] = v;
+            }
+            return obj;
+        }
+
+        let map = new Map([
+            ['yes',true],
+            ['no',false]
+        ]);
+        let obj = MapToObj(map);
+        console.log(obj);    //{yes:true,no:false}
+    }
+
+    {
+        //Object转换为Map
+        //运用object的for...in循环，遍历所有的key/value，
+        //调用set()，加key/value加入到map中。
+        let ObjToMap = (obj) => {
+            let map = new Map();
+            for (let key in obj){
+                map.set(key,obj[key]);
+            }
+            return map;
+        }
+        let obj = {
+            yes:true,
+            no:false
+        };
+        let map = ObjToMap(obj);
+        console.log(map);      //{"yes"=>true,"no"=>false}
+    }
+
+    {
+        //Map转换为Json，
+        //如果map的所有的键都是字符串，
+        //则可以通过先将map转换为object，再调用JSON.stringify()方法
+        let MapToJson = (map)=>{
+            let json = "";
+            let obj = {};
+
+            for(let [k,v] of map){
+                obj[k] = v;
+            }
+
+            json = JSON.stringify(obj);
+            return json;
+        }
+
+        let map = new Map().set('yes',true).set('no',false);
+        let json = MapToJson(map);
+        console.log(json);      //'{"yes":true,"no":false}'
+
+        //如果map中存在不是字符串的键
+        //则可以通过先将map转换为array，在调用用JSON.stringify()方法
+        let MapToJson2 = (map) => {
+            let json = "";
+            let arr = [];
+            for(let [k,v] of map){
+                arr.push([k,v]);
+            }
+
+            json = JSON.stringify(arr);
+            return json;
+        }
+
+        map = new Map().set(true,7).set({foo:3},'abc');
+        json = MapToJson2(map);
+        console.log(json);    //'[[true,7],[{"foo":3},"abc"]]'
+    }
+
+    {
+        //Json转换为Map
+        //可以先通过JSON.Parse()将json转换为object，
+        //再将object转换为Map
+
+        let JsonToMap = (json)=>{
+            let obj = JSON.parse(json);
+            let map = new Map();
+            for(let key in obj){
+                map.set(key,obj[key]);
+            }
+            return map;
+        }
+
+        let json = '{"yes":true,"no":false}';
+        let map = JsonToMap(json);
+        consolelog(map);    //{"yes"=>true,"no"=>false}
+    }
 }
