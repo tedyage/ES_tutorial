@@ -11,7 +11,7 @@
 目前Javascript处理异步的方式有：回调函数/事件监听/发布&订阅/Promise对象/Generator方法
 */
 
-const fs = require('fs');
+const fs = require('fs');   //引用读取文件的对象
 {
     //回调函数
     fs.readFile("./11 asynchronous/assets/a.txt","utf-8",function(err,data){

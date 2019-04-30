@@ -6,7 +6,7 @@ Promise对象
 Promise对象，就是为解决“回调地狱”问题而出现的。
 它将原来的嵌套回调函数，改成链式调用回调函数。
 */
-const readFile = require("fs-readfile-promise");
+const readFile = require("fs-readfile-promise");   //引用的是异步读取文件同时返回Promise对象的函数
 
 {
     readFile("./11 asynchronous/assets/c.txt")

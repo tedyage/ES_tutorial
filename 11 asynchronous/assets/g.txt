@@ -1,0 +1,1 @@
+Thunkify模块，可以自动控制generator函数的运行流。
