@@ -89,7 +89,7 @@ const baseDir = './11 asynchronous';
 
     //我们先看看如何手动控制执行这个gen函数
     let g = gen();
-    let res1 = g.next();    //res1其实就是一个function，里面只会有一个参数，即回调函数
+    let res1 = g.next();    //res1的value属性其实就是一个function，里面只会有一个参数，即回调函数
 
     res1.value(function(err,data){
         if(err) throw err;
