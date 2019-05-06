@@ -190,9 +190,44 @@ const fetch = require('node-fetch');
     }
 
     //4.async函数可以保留运行堆栈
-    const a = () => {
-        
+    
+    async function b(){
+        let res = await fetch('https://tc39.github.io/ecma262/');
+        let html = await res.text();
+        throw new Error(new Error("异步操作出错了。"));
+        //return html.match(/<title>([\s\S]+)<\/title>/i)[1];
+    } 
+
+    function c(data){
+        console.log("异步任务执行完毕，data is"+data);
     }
+
+    // (()=>{
+    //     try{
+    //         b().then((data)=>c("data is "+data));
+    //         console.log("IIFE执行完毕")
+    //     }    
+    //     catch(e){
+    //         console.error(e.message||e);
+    //     }    
+    // })();
+
+
+    //立即执行函数内部运行了一个异步任务b()，当b()运行的时候，a()的运行已经结束了。
+    //b()所在的上下文环境已经消失了，所以b()抛出的错误，a()的catch不会捕获。
+
+    (async()=>{
+        try{
+            let data = await b();
+            c(data);
+            console.log("IIFE执行完毕")
+        }    
+        catch(e){
+            console.error(e.message||e);
+        } 
+    })();
+    //立即执行函数是一个async函数，这样，当await b()运行的时候，a()会暂停运行，保存上下文。
+    //一旦b()或者c()报错，错误堆栈会包括a()。
 }
 
 
