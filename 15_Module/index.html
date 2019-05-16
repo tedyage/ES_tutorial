@@ -4,8 +4,11 @@
         <title>Module</title>
     </head>
     <body>
+        <!--所有用于引入外部模板的js，type都是"module"-->
         <script type="module">
-
+            import {firstName,lastName,year} from './assets/js/profile01.mjs';
+            console.log(firstName,lastName,year);
         </script>
+        <script type="module" src="./assets/js/main.js"></script>
     </body>
 </html>
