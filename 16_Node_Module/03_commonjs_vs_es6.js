@@ -31,7 +31,9 @@ console.log(counter);         //3
 incounter();
 console.log(counter);         //4
 /*
-ES6模块输入的变量counter是活的，完全可以反应所在模块lib.js内部的变化
+ES6模块输入的变量counter是活的，
+不存在缓存的结果
+完全可以反应所在模块lib.js内部的变化
 */
 
 
