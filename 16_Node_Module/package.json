@@ -2,15 +2,16 @@
   "name": "16_Node_Module",
   "version": "1.0.0",
   "description": "",
-  "main": "02_commonjs_vs_es6.js",
+  "main": "03_commonjs_vs_es6.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node 03_commonjs_vs_es6.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0"
   }
 }
