@@ -4,4 +4,4 @@ function incounter(){
     counter++;
 }
 
-export default {counter,incounter};
+export {counter,incounter};
