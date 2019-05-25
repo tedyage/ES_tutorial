@@ -18,3 +18,7 @@ let each = function(){console.log("each")};
 let foreach = each;
 export {each,foreach};
 //一个模块，可以有一个默认输出，和n个指定输出。
+
+
+
+
